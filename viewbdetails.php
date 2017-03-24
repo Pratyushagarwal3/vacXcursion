@@ -24,6 +24,9 @@ if(!isset($_SESSION['google_data']))
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Custom Theme files -->
+
+
+
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 <link href="css/style.css" type="text/css" rel="stylesheet" media="all">  
 <link href="css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons -->
@@ -107,39 +110,7 @@ if(!isset($_SESSION['google_data']))
 		<div class="banner-text">	
 			<div class="container">
 				<h2>Travel....... <br> <span>Before you run out of time!!!</span></h2>
-				<div class="agileits_search">
-					<form action="view.php" method="GET">
-					<input name="destination" type="text" placeholder="Enter Destination Name" > 
-						<select id="agileinfo_search" name="agileinfo_search" >
-						<option value="">Enter budget </option>
-							<?php 
-							  class Budget extends Connect{
-                                                                /*This function has been used to display the range of 
-                                                                 budgets in the budget drop down menu */                          
-								public function display()
-								{								
-								  $x=new Connect;
-							      $sql = "SELECT * FROM budget";
-								  $c= $x->getconnect();
-		                          $result = $c->query($sql);
-								  if ($result->num_rows > 0) {
-								  while($row = $result->fetch_assoc()) 
-								  {
-									 ?>
-								    <option value="<?php echo $row['price']?>">within &nbsp &nbsp<?php echo $row['price']; ?></option>
-								    <?php 
-								  }
-								  }
-								  }
-							      }
-								  $obj=new Budget;
-								  $obj->display();
-								  ?>
-							
-						   </select>
-						<input type="submit" value="Search">
-					</form>
-				</div> 
+				
 			</div>
 		</div>
 	</div>
@@ -158,49 +129,73 @@ $em=$_SESSION['google_data']['email'];
 $x=new Connect;
 $c=$x->getconnect();
 
-$res=$c->query("select bt.book_id,bt.first_name,bt.last_name,bt.contact,bt.booked_date,bt.time_booking,bd.price,bd.dest,bd.no_of_days,bd.hotel_id from book_trip as bt,book_detail as bd where bt.email='$em' and bt.book_id=bd.book_id");
+$res=$c->query("select bt.book_id,bd.vehicle_id,bd.s_count,bd.d_count,bd.m_count,bd.no_of_vehicle,bt.first_name,bt.last_name,bt.contact,bt.booked_date,bt.time_booking,bd.price,bd.dest,bd.no_of_days,bd.hotel_id from book_trip as bt,book_detail as bd where bt.email='$em' and bt.book_id=bd.book_id");
 if($res)
 {
 ?>
 
-<table border="" align="center">
+<div class="container">
+<div class="table-responsive">
+<table  class="table table-hover">
 <tr>
-<td align="center" colspan="10"><h1>Booking Details</h1></td>
+<td align="center" colspan="16"><h1 style="color:black">Booking Details</h1></td>
 </tr>
-<tr align="center">
 
-<th>S.No</th>
-<th>BOOKING ID</th>
-<th>FIRST NAME</th>
-<th>LAST NAME</th>
-<th>DESTINATION</th>
-<th>HOTEL</th>
-<th>NO OF DAYS</th>
-<th>BOOKED DATE</th>
-<th>PRICE</th>
-<th>BOOKING DATE & TIME</th>
+
+<tr  class="success" align="center">
+
+<th  style="color:black">S.No</th>
+<th style="color:black">BOOKING ID</th>
+<th  style="color:black">FIRST NAME</th>
+<th  style="color:black">LAST NAME</th>
+<th  style="color:black">DESTINATION</th>
+<th  style="color:black">HOTEL</th>
+<th  style="color:black">SINGLE ROOMS</th>
+<th  style="color:black">DOUBLE ROOMS</th>
+<th  style="color:black">MINI SUITEs</th>
+<th  style="color:black">NO OF DAYS</th>
+<th  style="color:black">VEHICLE</th>
+<th  style="color:black">No OF VEHICLE</th>
+<th  style="color:black">No OF PERSON</th>
+<th  style="color:black">BOOKED DATE</th>
+<th  style="color:black">PRICE</th>
+<th  style="color:black">BOOKING DATE & TIME</th>
 
 </tr>
+
 <?php
 $i=1;
 while($row=$res->fetch_assoc())
 {
+$temp=$row['book_id'];
 $tm=$row['hotel_id'];
+$th=$row['vehicle_id'];
 $res2=$c->query("select hotel_name from hotel where hotel_id='$tm'");
 $row2=$res2->fetch_assoc();
+$res3=$c->query("select vehicle_type from vehicle where vehicle_id='$th'");
+$row3=$res3->fetch_assoc();
+$res4=$c->query("select adul_count from book_member where book_id='$temp'");
+$row4=$res4->fetch_assoc();
+
 ?>
 
 <tr align="center">
-<td><?php echo $i++;?></td>
-<td><?php echo $row['book_id'];?></td>
-<td><?php echo $row['first_name'];?></td>
-<td><?php echo $row['last_name'];?></td>
-<td><?php echo $row['dest'];?></td>
-<td><?php echo $row2['hotel_name'];?></td>
-<td><?php echo $row['no_of_days'];?></td>
-<td><?php echo $row['booked_date'];?></td>
-<td><?php echo $row['price'];?></td>
-<td><?php echo $row['time_booking'];?></td>
+<td  style="color:black"><?php echo $i++;?></td>
+<td  style="color:black"><?php echo $row['book_id'];?></td>
+<td  style="color:black"><?php echo $row['first_name'];?></td>
+<td  style="color:black"><?php echo $row['last_name'];?></td>
+<td  style="color:black"><?php echo $row['dest'];?></td>
+<td  style="color:black"><?php echo $row2['hotel_name'];?></td>
+<td  style="color:black"><?php echo $row['s_count'];?></td>
+<td  style="color:black"><?php echo $row['d_count'];?></td>
+<td  style="color:black"><?php echo $row['m_count'];?></td>
+<td  style="color:black"><?php echo $row['no_of_days'];?></td>
+<td  style="color:black"><?php echo $row3['vehicle_type'];?></td>
+<td  style="color:black"><?php echo $row['no_of_vehicle'];?></td>
+<td  style="color:black"><?php echo $row4['adul_count'];?></td>
+<td  style="color:black"><?php echo $row['booked_date'];?></td>
+<td  style="color:black"><?php echo $row['price'];?></td>
+<td  style="color:black"><?php echo $row['time_booking'];?></td>
 
 </tr>
 <?php
@@ -212,6 +207,8 @@ NO BOOKING HISTORY
 }	
 ?>
 </table>
+</div>
+</div>
 
 	
 <br>
