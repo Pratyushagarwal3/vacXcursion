@@ -157,14 +157,15 @@ $em=$_SESSION['google_data']['email'];
 
 $x=new Connect;
 $c=$x->getconnect();
-$res=$c->query("select bt.book_id,bt.first_name,bt.last_name,bt.contact,bt.booked_date,bt.time_booking,bd.price,bd.dest,bd.no_of_days from book_trip as bt,book_detail as bd where bt.email='$em' and bt.book_id=bd.book_id");
+
+$res=$c->query("select bt.book_id,bt.first_name,bt.last_name,bt.contact,bt.booked_date,bt.time_booking,bd.price,bd.dest,bd.no_of_days,bd.hotel_id from book_trip as bt,book_detail as bd where bt.email='$em' and bt.book_id=bd.book_id");
 if($res)
 {
 ?>
 
 <table border="" align="center">
 <tr>
-<td align="center" colspan="9"><h1>Booking Details</h1></td>
+<td align="center" colspan="10"><h1>Booking Details</h1></td>
 </tr>
 <tr align="center">
 
@@ -173,6 +174,7 @@ if($res)
 <th>FIRST NAME</th>
 <th>LAST NAME</th>
 <th>DESTINATION</th>
+<th>HOTEL</th>
 <th>NO OF DAYS</th>
 <th>BOOKED DATE</th>
 <th>PRICE</th>
@@ -183,6 +185,9 @@ if($res)
 $i=1;
 while($row=$res->fetch_assoc())
 {
+$tm=$row['hotel_id'];
+$res2=$c->query("select hotel_name from hotel where hotel_id='$tm'");
+$row2=$res2->fetch_assoc();
 ?>
 
 <tr align="center">
@@ -191,6 +196,7 @@ while($row=$res->fetch_assoc())
 <td><?php echo $row['first_name'];?></td>
 <td><?php echo $row['last_name'];?></td>
 <td><?php echo $row['dest'];?></td>
+<td><?php echo $row2['hotel_name'];?></td>
 <td><?php echo $row['no_of_days'];?></td>
 <td><?php echo $row['booked_date'];?></td>
 <td><?php echo $row['price'];?></td>
