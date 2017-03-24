@@ -1,13 +1,4 @@
 <?php
-session_start();
-if(!$_SESSION['google_data'])
-{
-echo "<script>alert('Please Login First')</script>";
-//header('location:index1.php');
-echo "<script>window.open('index1.php','_self')</script>"; 
-}
-?>
-<?php
 require_once('conn.php');
 require_once('classhotel.php');
 require_once('classvehicle.php');
@@ -203,7 +194,14 @@ $obj->deletepackage($packid,$dest);
 }
 if(isset($_GET['book']))
 {
-	
+session_start();
+if(!isset($_SESSION['google_data']))
+{
+echo "<script>alert('Please Login First')</script>";
+
+echo "<script>window.open('index1.php','_self')</script>"; 
+}
+else{
 $obj=new Package;
 $res=$obj->checkpackage($_GET['pid'],$_GET['hid'],$_GET['vid'],$_GET['dest'],$_GET['days'],$_GET['date'],$_GET['nov'],$_GET['scount'],$_GET['dcount'],$_GET['mcount'],$_GET['price']);
 
@@ -234,7 +232,7 @@ else
 	echo"<script>alert('Your package cannot be booked right now')</script>";
 	echo"<script>window.open('index1.php','_self')</script>";
 }
-
+}
 }
 
 
