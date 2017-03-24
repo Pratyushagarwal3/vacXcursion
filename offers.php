@@ -41,9 +41,7 @@ $b=$packobj->getoffer();
 							<li class="head-dpdn">
 								<i class="fa fa-phone" aria-hidden="true"></i> Call us: +8893791709
 							</li> 
-							<li class="head-dpdn">
-								<a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
-							</li> 
+							 
 						</ul>
 					</div>
 					<div class="clearfix"> </div> 
