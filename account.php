@@ -106,7 +106,7 @@ if(!isset($_SESSION['google_data']))
 			<div class="container">
 				<h2>Travel....... <br> <span>Before you run out of time!!!</span></h2>
 				<div class="agileits_search">
-					<form action="view.php" method="GET">
+					<form action="account.php" method="GET">
 					<input name="destination" type="text" placeholder="Enter Destination Name" > 
 						<select id="agileinfo_search" name="agileinfo_search" >
 						<option value="">Enter budget </option>
@@ -135,7 +135,7 @@ if(!isset($_SESSION['google_data']))
 								  ?>
 							
 						   </select>
-						<input type="submit" value="Search">
+						<input type="submit" name="vsub" value="Search">
 					</form>
 				</div> 
 			</div>
@@ -228,3 +228,18 @@ if(!isset($_SESSION['google_data']))
 	<script src="js/bootstrap.js"></script>
 </body>
 </html>
+<?php
+if(isset($_GET['vsub']))
+{
+	$a=$_GET['agileinfo_search'];
+	$b=$_GET['destination'];
+	if($_GET['agileinfo_search'] or $_GET['destination'])
+	{
+		echo "<script>window.open('view.php?destination=$b&agileinfo_search=$a','_self')</script>";
+	}
+	else
+	{
+		echo "<script>alert('Enter some Field')</script>";
+	}
+}
+?>
