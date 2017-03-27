@@ -428,7 +428,7 @@ echo $_SESSION['google_data']['email'];?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Number Of Children</label>
-                                <input  type="number" required="required min="0" value="0" name="noc" class="form-control" placeholder="No. of children"  />
+                                <input  type="number" required="required" min="0" value="0" name="noc" class="form-control" placeholder="No. of children"  />
 								<input type="hidden" name="bookeddate" value="<?php echo $_GET['date'];?>">
 								<input type="hidden" name="email" value="<?php echo $_SESSION['google_data']['email'];?>">
 								<input type="hidden" name="bookid" value="<?php echo $_GET['bookid'];?>">
