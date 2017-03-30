@@ -160,7 +160,7 @@ Include_once('user.php');
 							  $noofdays = $ob->getNoDaysInPkg($pid); 
 							  $priceperdayv = $ob->getVehiclePriceInPkg($pid);
 							  
-							  $customizedprice = (500 + ($noofdays * $priceperdayv))+($noofdays * $updatedhotelprice);
+							  $customizedprice = 500 + ($noofdays * $updatedhotelprice);
 							 # echo "<br><br><br>"."updatedprice".$customizedprice."<br><br>";
 							 
 							  #updated new package price
