@@ -353,7 +353,7 @@ include_once('user.php');
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Last Name</label>
-                                <input  maxlength="10"name="last" type="text" required placeholder="Enter Last Name"class="form-control"   />
+                                <input  maxlength="10"name="last" type="text" placeholder="Enter Last Name"class="form-control"   />
                             </div>
                         </div>
 						<div class="col-md-6">
