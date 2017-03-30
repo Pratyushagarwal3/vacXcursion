@@ -399,7 +399,7 @@ echo $_SESSION['google_data']['email'];?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Pin Code</label>
-                                <input  maxlength="6" type="text" required="required" name="pin" class="form-control" placeholder="Enter Pin Code"  />
+                                <input  maxlength="6" type="text" required="required" pattern="^([0-9]{6})$" name="pin" class="form-control" placeholder="Enter Pin Code"  />
                             </div>
                         </div>
                         <div class="col-md-6">
