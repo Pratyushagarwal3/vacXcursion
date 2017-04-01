@@ -353,7 +353,7 @@ include_once('user.php');
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Last Name</label>
-                                <input  maxlength="10"name="last" type="text" placeholder="Enter Last Name"class="form-control"   />
+                                <input  maxlength="10"name="last" type="text"  placeholder="Enter Last Name"class="form-control"   />
                             </div>
                         </div>
 						<div class="col-md-6">
@@ -399,7 +399,7 @@ echo $_SESSION['google_data']['email'];?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Pin Code</label>
-                                <input  maxlength="6" type="text" required="required" pattern="^([0-9]{6})$" name="pin" class="form-control" placeholder="Enter Pin Code"  />
+                                <input  maxlength="6" type="text" pattern="^([0-9]{6})$" required="required" name="pin" id="txtChar" onkeypress="return isNumberKey(event)"  class="form-control" placeholder="Enter Pin Code"  />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -421,14 +421,16 @@ echo $_SESSION['google_data']['email'];?>
                         <h3>Passengers Travelling</h3>
                         <div class="col-md-6">
                             <div class="form-group">
+<?php $maxadul= (($_GET['scount']*1)+($_GET['dcount']*2)+($_GET['mcount']*2)); ?>
                                 <label class="control-label">Number Of Adults</label>
-                                <input  type="number" min="1" value="1" required="required"name="noa" class="form-control" placeholder="No. of adults"  />
+                                <input  type="number" min="1" max="<?php echo $maxadul ?>" value="1" required="required"name="noa" class="form-control" placeholder="No. of adults"  />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+<?php $maxchild= (($_GET['scount']*0)+($_GET['dcount']*1)+($_GET['mcount']*2)); ?>
                                 <label class="control-label">Number Of Children</label>
-                                <input  type="number" required="required" min="0" value="0" name="noc" class="form-control" placeholder="No. of children"  />
+                                <input  type="number" required="required" min="0"  max="<?php echo $maxchild?>" value="0" name="noc" class="form-control" placeholder="No. of children"  />
 								<input type="hidden" name="bookeddate" value="<?php echo $_GET['date'];?>">
 								<input type="hidden" name="email" value="<?php echo $_SESSION['google_data']['email'];?>">
 								<input type="hidden" name="bookid" value="<?php echo $_GET['bookid'];?>">
@@ -442,6 +444,19 @@ echo $_SESSION['google_data']['email'];?>
                             </div>
                         </div>
                     </div>
+<SCRIPT language=Javascript>
+       <!--
+       function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
+
+          return true;
+       }
+       //-->
+    </SCRIPT>
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="submit" name="info">Next</button> 
 					</form>
                 </div>
