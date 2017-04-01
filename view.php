@@ -24,10 +24,15 @@ require_once('classvehicle.php');
 
 $packobj=new Package;
 $destname=$_GET['destination'];
+
 $price=$_GET['agileinfo_search'];
 $b=array();
 $b=$packobj->displayPackageDetails($destname,$price);
-
+if(!$b)
+{
+ echo "<script>alert('sorry!!!! no package available..for your choices')</script>";
+		       echo "<script>window.open('index1.php','_self')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -232,7 +237,7 @@ $b=$packobj->displayPackageDetails($destname,$price);
             <input type="hidden" name="pid" value="<?php echo $b[0][$k][0]?>">
 	  <input type="hidden" name="hid" value="<?php echo $b[0][$k][2]?>">
 	  <input type="hidden" name="vid" value="<?php echo $b[0][$k][3]?>">
-	  <input type="hidden" name="dest" value="<?php echo $destname?>">
+	  <input type="hidden" name="dest" value="<?php echo $b[0][$k][1]?>">
 	  <input type="hidden" name="days" value="<?php echo  $b[0][$k][6]?>">
 	  <input type="hidden" name="nov" value="<?php echo $b[0][$k][4]?>">
 	  <input type="hidden" name="scount" value="<?php echo $a[0][1]?>">
