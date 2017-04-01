@@ -4,6 +4,7 @@ include_once('classhotel.php');
 include_once('classvehicle.php');
 include_once('user.php');
 $userobj= new User;
+echo $_GET['contact'];
 $userobj->insertdetails($_GET['email'],$_GET['first'],$_GET['last'],$_GET['contact'],$_GET['bookid'],$_GET['bookeddate'],$_GET['street'],$_GET['city'],$_GET['state'],$_GET['country'],$_GET['pin'],$_GET['noa'],$_GET['noc']); 
 ?>
 <!DOCTYPE html>

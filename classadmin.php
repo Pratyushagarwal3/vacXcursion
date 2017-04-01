@@ -17,6 +17,28 @@ class Admin extends Connect{
   {
 	$destid=rand(1,9999999);
 	$file_get=$_FILES['foto']['name'];
+	$roomcount=1;
+	$room=$_POST['typeroom'];
+			for($i=0;$i<count($room);$i++)
+			    {
+					if($room[$i]==="Null")
+					{
+						$roomcount=0;
+					}
+				}
+//echo $_POST['destname1'];
+// echo $roomcount;
+	if(!$_POST['destname1'] or !$_POST['hotel'] or !$_POST['hoteltype'] or !$_POST['snr'] or !$_POST['psnr'] or !$_POST['dnr'] or !$_POST['pdnr'] or !$_POST['mns']
+	or !$_POST['pmns'] or !$_POST['hcon'] or !$_POST['tsnr'] or !$_POST['ctsnr'] or !$_POST['tsenr'] or !$_POST['ctsenr']
+	or !$_POST['tsuv'] or !$_POST['ctsuv']  or !$_POST['typevehicle'] or !$_POST['day'] or !$file_get or ($roomcount==0))
+	{
+		
+		echo "<script type='text/javascript'>alert('All fields not added');</script>";
+        echo"<script>window.open('adminadd.php','_self')</script>";
+	}
+	else
+	{
+		
     $tmp=$_FILES['foto']['tmp_name'];
     $file_to_saved="images/".$file_get;
     move_uploaded_file($tmp,$file_to_saved);
@@ -104,24 +126,44 @@ class Admin extends Connect{
 			}
 		}
 	}  
-	       else
+	  else
 	       {
-				echo "<script>alert('Destination already exists')</script>";
-		echo"<script>window.open('adminadd.php','_self')</script>";
+			   echo "<script>alert('Destination already exists')</script>";
+		        echo"<script>window.open('adminadd.php','_self')</script>";
 				
 			}
+  }
   }
   else
   {
 	  $var2=$_POST['ehname'];
 	  $packageid=rand(10000,400000);
 	  $file_get=$_FILES['foto1']['name'];
-      $tmp=$_FILES['foto1']['tmp_name'];
-      $file_to_saved="images/".$file_get;
-	  //echo $var2;
-      move_uploaded_file($tmp,$file_to_saved);
+      $roomcount=1;
 	  if($var2==='hother')
 		{
+			$room=$_POST['typeroom1'];
+			for($i=0;$i<count($room);$i++)
+			    {
+					if($room[$i]==="Null")
+					{
+						$roomcount=0;
+					}
+				}
+			if(!$_POST['hotel1'] or !$_POST['hoteltype1'] or !$_POST['snr1'] or !$_POST['psnr1'] or !$_POST['dnr1'] or !$_POST['pdnr1'] or !$_POST['mns1']
+	       or !$_POST['pmns1'] or !$_POST['hcon1'] or !$_POST['tsnr1'] or !$_POST['ctsnr1'] or !$_POST['tsenr1'] or !$_POST['ctsenr1']
+	        or !$_POST['tsuv1'] or !$_POST['ctsuv1']  or !$_POST['typevehicle1'] or !$_POST['day1'] or !$file_get or ($roomcount==0))
+	       {
+		
+		               echo "<script type='text/javascript'>alert('All fields not added');</script>";
+				                echo"<script>window.open('adminadd.php','_self')</script>";
+	      }
+	else
+	{
+		
+		$tmp=$_FILES['foto1']['tmp_name'];
+       $file_to_saved="images/".$file_get;
+	    move_uploaded_file($tmp,$file_to_saved);
 			$resu=$c->query("select hotel_id from hotel where hotel_name='".$_POST['ehname']."';");
 			if($resu->num_rows==0)		
 	       { 
@@ -198,10 +240,29 @@ class Admin extends Connect{
 			   include('adminadd.php');
 			}
 		}
+		}
 		else
 		{
 			//echo $var2;
 			$file_get=$_FILES['foto2']['name'];
+			$room=$_POST['typeroom2'];
+			$roomcount=1;
+			for($i=0;$i<count($room);$i++)
+			    {
+					if($room[$i]==="Null")
+					{
+						$roomcount=0;
+					}
+				}
+			
+			if(  !$_POST['typevehicle2'] or !$_POST['day2'] or !$file_get or ($roomcount==0))
+			{
+				echo "<script type='text/javascript'>alert('All fields not added');</script>";
+				                echo"<script>window.open('adminadd.php','_self')</script>";
+			}
+			else
+			{
+				
             $tmp=$_FILES['foto2']['tmp_name'];
             $file_to_saved="images/".$file_get;
             move_uploaded_file($tmp,$file_to_saved);
@@ -250,10 +311,9 @@ class Admin extends Connect{
 				                 echo"<script>window.open('adminadd.php','_self')</script>";
 				}
 		    }
-		}
-  }
-
- 
+		   }
+    }
+}
 }
 public function checkadmin()
 	{
@@ -283,8 +343,8 @@ public function checkadmin()
 	   }
 	   }
     }
-	
-}
+}	
+
 
 $obj=new Admin();
 if(isset($_POST['submit']))

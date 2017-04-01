@@ -10,7 +10,6 @@ if(!$_SESSION['Username'])
 <?php
 require_once('conn.php');
 require_once('classdest.php');
-
  ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,6 @@ require_once('classdest.php');
           if (charCode != 46 && charCode > 31 
             && (charCode < 48 || charCode > 57))
              return false;
-
           return true;
        }
        //-->
@@ -145,12 +143,12 @@ require_once('classdest.php');
 						
 				        <div id="form1">
 						<label for="id"><h3>Enter new destination</h3></label>
-						<input class="form-control" type="text" name="destname1" placeholder="name of destination" required="required" pattern="[a-zA-Z]*" />
+						<input class="form-control" type="text" name="destname1" placeholder="name of destination"  pattern="[a-zA-Z]*" />
 						<br>
 						<h3>Enter Hotel Details </h3>
 						<br>
 						<label for="id">Enter Hotel name </label>
-						<input class="form-control" type ="text" name="hotel" placeholder="Hotel Name" pattern="[a-zA-Z]*" required="required" />
+						<input class="form-control" type ="text" name="hotel" placeholder="Hotel Name" pattern="[a-zA-Z ]*"  />
 						<br>
 						<label for="id">Enter Hotel type</label> &nbsp &nbsp &nbsp
                         <select class="agile-ltext"  name="hoteltype" style="width:100px; height:30px;">
@@ -190,8 +188,8 @@ require_once('classdest.php');
 						
 						<br>
 						<label for="id">Contact Details: </label> &nbsp &nbsp &nbsp
-						<INPUT class="form-control" pattern="[\+]\d{12}" id="txtChar" 
-           type="text" name="hcon" placeholder="+919876543210">
+						<INPUT class="form-control" maxlength="10" pattern="^([+][9][1]|[9][1]|[0]){0,1}([7-9]{1})([0-9]{9})$" 
+           type="text" name="hcon" placeholder="9876543210">
 						<br>
 						<br>
 					    <h3> Enter Vehicle Details </h3><br>
@@ -223,6 +221,7 @@ require_once('classdest.php');
 &nbsp &nbsp &nbsp
 &nbsp &nbsp &nbsp
 <select name="typeroom[]" multiple="multiple" size="3"> &nbsp &nbsp &nbsp
+<option value="Null" selected>select type of room</option>	
 						  <option value="single">Single room</option>
 						  <option value="double">Double room</option>
 						  <option value="minisuite">Minisuite</option>
@@ -258,7 +257,7 @@ require_once('classdest.php');
 						<h3>Enter Hotel Details </h3>
 						<br>
 						<label for="id">Enter Hotel name </label>
-						<input class="form-control" type ="text" name="hotel1" placeholder="" />
+						<input class="form-control" type ="text" name="hotel1" placeholder=""  pattern="[a-zA-Z ]*"/>
 						<br>
 						<label for="id">Enter Hotel type</label> &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
                         <select class="agile-ltext"  name="hoteltype1" style="width:100px; height:30px;">
@@ -295,14 +294,15 @@ require_once('classdest.php');
 						<br>
 						<br>
 						<label for="id"> Enter Contact Number: </label> &nbsp &nbsp &nbsp
-						<INPUT class="form-control" maxlength="10" id="txtChar" type="text" name="hcon1">
+						<INPUT class="form-control" maxlength="10" pattern="^([+][9][1]|[9][1]|[0]){0,1}([7-9]{1})([0-9]{9})$" type="text" name="hcon1">
 						
 						<br><br>
 						<br>
 						<br><h3> Insert package information </h3> <br>
 					    <label for="id">select type of room in package </label> 
 						<br><select name="typeroom1[]" multiple="multiple" size="3"> &nbsp &nbsp &nbsp
-						  <br><br><option value="single">Single room</option>
+<option value="Null" selected>select type of room</option>							  
+<br><br><option value="single">Single room</option>
 						  <option value="double">Double room</option>
 						  <option value="minisuite">Minisuite</option>
 						</select>
@@ -332,6 +332,7 @@ require_once('classdest.php');
 					    <label for="id">Select type of room in package </label>
 						<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 						<select name="typeroom2[]" multiple="multiple" size="3"><br> 
+                                                   <option value="Null" selected>select type of room</option>	
 						  <option value="single">Single room</option>
 						  <option value="double">Double room</option>
 						  <option value="minisuite">Minisuite</option>
