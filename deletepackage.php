@@ -15,7 +15,11 @@ $b=array();
 $var1=$_GET['destination'];
 $var2=$_GET['price'];
 $b=$packobj->displayPackageDetails($var1,$var2);
-
+if(!$b)
+{
+ echo "<script>alert('sorry!!!! no package available..for your choices')</script>";
+		       echo "<script>window.open('admin.php','_self')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
